@@ -66,7 +66,7 @@ class TestDialogue(QtWidgets.QDialog):
         mainLayout.addLayout(formLayout)
         mainLayout.addLayout(buttonLayout)
     
-    # create connects for signals to slots
+    # create connections for signals to slots
     def createConnections(self):
         self.linedit.enter_pressed.connect(self.on_enter_pressed)
         self.checkbox1.toggled.connect(self.printIsHidden)
