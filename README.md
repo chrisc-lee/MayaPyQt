@@ -3,4 +3,4 @@ A collection of scripts using PyQt in Maya to create various UI elements in Maya
 
 ### Current Scripts Created:
 - A simple dialogue box with signals and slots
-- An import dialogue box that allows one to open/import a file into Maya
+- A dialogue box that allows one to open/import a file into Maya
