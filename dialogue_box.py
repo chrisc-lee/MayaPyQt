@@ -10,7 +10,7 @@ def mayaMainWindow():
     mainWindowPtr = omui.MQtUtil.mainWindow()
     return wrapInstance(int(mainWindowPtr), QtWidgets.QWidget)
 
-# creating own signal for QLineEdit    
+# Creating own signal for QLineEdit    
 class MyLineEdit(QtWidgets.QLineEdit):
     enter_pressed = QtCore.Signal(str)
     
@@ -23,7 +23,7 @@ class MyLineEdit(QtWidgets.QLineEdit):
             self.enter_pressed.emit("Return Key Pressed")
 
 class TestDialogue(QtWidgets.QDialog):
-    # constructor (make parent the Maya main window so exists in Maya window and doesn't create a new window outside Maya window)
+    # Constructor (make parent the Maya main window so exists in Maya window and doesn't create a new window outside Maya window)
     def __init__(self, parent=mayaMainWindow()):
         super(TestDialogue, self).__init__(parent)
         self.setWindowTitle("Test Dialogue")
@@ -31,13 +31,13 @@ class TestDialogue(QtWidgets.QDialog):
         # The help button is disabled by default in Maya 2022
         #self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
         
-        # call these functions to instantiate widgets in window (along with layouts and connections for widgets)
+        # Call these functions to instantiate widgets in window (along with layouts and connections for widgets)
         self.createWidgets()
         self.createLayouts()
         self.createConnections()
         
     def createWidgets(self):
-        # combo box (drop down box)
+        # Combo box (drop down box)
         self.combobox = QtWidgets.QComboBox()
         self.combobox.addItems(["ComboBoxItem 1", "ComboBoxItem 2", "ComboBoxItem 3", "ComboBoxItem 4"])
         # Line edit (text field)
@@ -66,7 +66,7 @@ class TestDialogue(QtWidgets.QDialog):
         mainLayout.addLayout(formLayout)
         mainLayout.addLayout(buttonLayout)
     
-    # create connections for signals to slots
+    # Create connections for signals to slots
     def createConnections(self):
         self.linedit.enter_pressed.connect(self.on_enter_pressed)
         self.checkbox1.toggled.connect(self.printIsHidden)
@@ -74,11 +74,11 @@ class TestDialogue(QtWidgets.QDialog):
         self.combobox.activated[str].connect(self.on_activated_str) #[str] to indicate which function to call using decorator
         self.cancelBtn.clicked.connect(self.close)
     
-    # slots for different widgets    
+    # Slots for different widgets    
     def on_enter_pressed(self, text):
         print(text)
     
-    # decorators for "function overloading" (since python doesn't do python overloading)
+    # Decorators for "function overloading" (since python doesn't do python overloading)
     @QtCore.Slot(int)
     def on_activated_int(self, index):
         print("ComboBox Index: {0}".format(index))
@@ -98,7 +98,7 @@ class TestDialogue(QtWidgets.QDialog):
         else:
             print("Object is visible")
 
-# main function of script        
+# Main function of script        
 if __name__ == "__main__":
     try:
         testDialogue.close()
